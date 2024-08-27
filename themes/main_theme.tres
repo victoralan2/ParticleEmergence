@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bhjsw77usfltw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6ulv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hp1f0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uscf1"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gefwx"]
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_y6ulv")
+Button/styles/normal = null
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+LineEdit/font_sizes/font_size = 16
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_hp1f0")
+Panel/styles/panel = SubResource("StyleBoxFlat_uscf1")
+TextEdit/styles/focus = SubResource("StyleBoxEmpty_gefwx")

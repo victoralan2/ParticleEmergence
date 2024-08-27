@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=3 uid="uid://jour06ixabpk"]
+
+[ext_resource type="Script" path="res://scripts/ParticleManager.cs" id="1_r8vfr"]
+[ext_resource type="PackedScene" uid="uid://bcgtmpu5unbhw" path="res://scenes/user_interface.tscn" id="1_rxtux"]
+[ext_resource type="Script" path="res://scripts/Camera.cs" id="2_v8hnp"]
+[ext_resource type="Theme" uid="uid://bhjsw77usfltw" path="res://themes/main_theme.tres" id="3_fgckg"]
+[ext_resource type="Script" path="res://scripts/ui/Counter.cs" id="3_myvfa"]
+[ext_resource type="FontFile" uid="uid://dqaqhieayat75" path="res://fonts/VOLTARA DEMO.ttf" id="3_wp1o5"]
+[ext_resource type="Script" path="res://scripts/ui/DisplaySeed.cs" id="5_6h1g3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2g83o"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_pdpb6"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_jveyo"]
+font = ExtResource("3_wp1o5")
+font_size = 171
+
+[sub_resource type="Environment" id="Environment_wuqdj"]
+background_mode = 3
+tonemap_mode = 2
+glow_enabled = true
+glow_strength = 0.8
+glow_bloom = 0.1
+glow_blend_mode = 0
+glow_hdr_threshold = 0.9
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_etn7y"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Window" type="Window" parent="."]
+initial_position = 2
+size = Vector2i(327, 702)
+visible = false
+exclusive = true
+unresizable = true
+theme = ExtResource("3_fgckg")
+
+[node name="UserInterface" parent="Window" node_paths=PackedStringArray("particleManager", "menuButton") instance=ExtResource("1_rxtux")]
+offset_top = 1.96
+offset_right = -327.0
+offset_bottom = -700.04
+size_flags_horizontal = 3
+size_flags_vertical = 3
+particleManager = NodePath("../../ParticleManager")
+menuButton = NodePath("../../CanvasLayer/MenuButton")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Counter" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 801.0
+offset_top = 957.0
+offset_right = 1119.0
+offset_bottom = 1078.0
+text = "Uptime:
+00:00:00"
+label_settings = SubResource("LabelSettings_2g83o")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_myvfa")
+
+[node name="Current Seed" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 1596.0
+offset_top = 76.0
+offset_right = 1863.0
+offset_bottom = 115.0
+text = "Seed: 1234567890"
+label_settings = SubResource("LabelSettings_pdpb6")
+horizontal_alignment = 2
+justification_flags = 162
+script = ExtResource("5_6h1g3")
+
+[node name="Clock" type="Label" parent="CanvasLayer"]
+offset_left = 244.0
+offset_top = 185.0
+offset_right = 1672.0
+offset_bottom = 489.0
+theme = ExtResource("3_fgckg")
+text = "12:34:56"
+label_settings = SubResource("LabelSettings_jveyo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="CanvasLayer"]
+offset_left = 881.0
+offset_top = 983.0
+offset_right = 1040.0
+offset_bottom = 1045.0
+text = "Popup Menu"
+
+[node name="ParticleManager" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(-1, 0)
+script = ExtResource("1_r8vfr")
+NumberOfParticles = 1000
+ParticleColors = PackedColorArray(1, 0.294118, 0.360784, 1, 0.878431, 0.92549, 0.894118, 1, 0.0196078, 0.4, 0.454902, 1, 0.4, 0.74902, 0.74902, 1)
+SpaceDimensions = Vector2(256, 144)
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+script = ExtResource("2_v8hnp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wuqdj")
+camera_attributes = SubResource("CameraAttributesPractical_etn7y")
+
+[connection signal="close_requested" from="Window" to="Window/UserInterface" method="_OnWindowClose"]

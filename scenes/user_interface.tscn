@@ -1,0 +1,229 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcgtmpu5unbhw"]
+
+[ext_resource type="Theme" uid="uid://bhjsw77usfltw" path="res://themes/main_theme.tres" id="1_wor18"]
+[ext_resource type="Script" path="res://scripts/ui/options_menu/OptionsMenu.cs" id="2_nm0bi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ssya"]
+bg_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8x504"]
+font_size = 24
+font_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_slkev"]
+font_size = 14
+font_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gw7j3"]
+font_color = Color(0.61, 0.290868, 0.1647, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6vl6n"]
+font_color = Color(0.3723, 0.6, 0.186, 1)
+
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("ParticleColors", "NumberOfParticles", "SpaceSizeX", "SpaceSizeY", "Seed", "TimeScale")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 47.0
+offset_right = -1593.0
+offset_bottom = -338.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wor18")
+script = ExtResource("2_nm0bi")
+ParticleColors = NodePath("Config/ParticleColors/LineEdit")
+NumberOfParticles = NodePath("Config/NumOfParticles/SpinBox")
+SpaceSizeX = NodePath("Config/SpaceSize/SpinBoxX")
+SpaceSizeY = NodePath("Config/SpaceSize/SpinBoxY")
+Seed = NodePath("Config/Seed/SpinBox")
+TimeScale = NodePath("Config/TimeScale/SpinBox")
+
+[node name="Config" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 327.0
+offset_bottom = 689.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ssya")
+
+[node name="Title 1" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 263.0
+offset_bottom = 47.0
+text = "Particle configuration"
+label_settings = SubResource("LabelSettings_8x504")
+vertical_alignment = 1
+
+[node name="ParticleColors" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 47.0
+offset_right = 181.0
+offset_bottom = 84.0
+text = "Particle colors"
+label_settings = SubResource("LabelSettings_slkev")
+vertical_alignment = 1
+
+[node name="ColorPicker" type="ColorPicker" parent="Config/ParticleColors"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 41.0
+offset_right = 296.0
+offset_bottom = 256.0
+color = Color(0.8, 0.8, 0.8, 1)
+edit_alpha = false
+picker_shape = 4
+presets_visible = false
+
+[node name="LineEdit" type="LineEdit" parent="Config/ParticleColors"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 4.0
+offset_right = 292.0
+offset_bottom = 35.0
+text = "ff4b5c,e0ece4,056674,66bfbf"
+
+[node name="Title 2" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 303.0
+offset_right = 261.0
+offset_bottom = 340.0
+text = "Generation options"
+label_settings = SubResource("LabelSettings_8x504")
+vertical_alignment = 1
+
+[node name="NumOfParticles" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 350.0
+offset_right = 179.0
+offset_bottom = 387.0
+text = "Number of particles"
+label_settings = SubResource("LabelSettings_slkev")
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Config/NumOfParticles"]
+layout_mode = 0
+offset_left = 154.0
+offset_right = 292.0
+offset_bottom = 31.0
+max_value = 100000.0
+value = 1000.0
+rounded = true
+allow_greater = true
+select_all_on_focus = true
+
+[node name="SpaceSize" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 392.0
+offset_right = 179.0
+offset_bottom = 429.0
+text = "Space size"
+label_settings = SubResource("LabelSettings_slkev")
+vertical_alignment = 1
+
+[node name="SpinBoxX" type="SpinBox" parent="Config/SpaceSize"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 47.0
+offset_right = 298.0
+offset_bottom = 78.0
+max_value = 10000.0
+value = 256.0
+rounded = true
+allow_greater = true
+
+[node name="SpinBoxY" type="SpinBox" parent="Config/SpaceSize"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 83.0
+offset_right = 298.0
+offset_bottom = 114.0
+max_value = 10000.0
+value = 144.0
+rounded = true
+allow_greater = true
+
+[node name="Label" type="Label" parent="Config/SpaceSize"]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 40.0
+offset_bottom = 74.0
+text = "X: "
+label_settings = SubResource("LabelSettings_gw7j3")
+
+[node name="Label2" type="Label" parent="Config/SpaceSize"]
+layout_mode = 0
+offset_top = 87.0
+offset_right = 40.0
+offset_bottom = 110.0
+text = "Y:"
+label_settings = SubResource("LabelSettings_6vl6n")
+
+[node name="Seed" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 506.0
+offset_right = 179.0
+offset_bottom = 543.0
+text = "Generation seed"
+label_settings = SubResource("LabelSettings_slkev")
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Config/Seed"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 3.0
+offset_right = 298.0
+offset_bottom = 34.0
+min_value = -10000.0
+max_value = 10000.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+select_all_on_focus = true
+
+[node name="Title 3" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 549.0
+offset_right = 261.0
+offset_bottom = 586.0
+text = "Physics options"
+label_settings = SubResource("LabelSettings_8x504")
+vertical_alignment = 1
+
+[node name="TimeScale" type="Label" parent="Config"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 593.0
+offset_right = 159.0
+offset_bottom = 630.0
+text = "Time scale"
+label_settings = SubResource("LabelSettings_slkev")
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Config/TimeScale"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 3.0
+offset_right = 298.0
+offset_bottom = 34.0
+max_value = 10.0
+step = 0.1
+value = 1.0
+select_all_on_focus = true
+
+[node name="ApplyButton" type="Button" parent="."]
+layout_mode = 0
+offset_top = 640.0
+offset_right = 326.0
+offset_bottom = 695.0
+theme = ExtResource("1_wor18")
+text = "Apply and regenerate"
+
+[connection signal="pressed" from="ApplyButton" to="." method="_OnApplyPressed"]
